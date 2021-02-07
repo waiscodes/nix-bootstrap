@@ -5,7 +5,6 @@ function App() {
   return (
     <div className='App'>
       <Navbar1 />
-      <h1>NixTech App</h1>
     </div>
   );
 }
