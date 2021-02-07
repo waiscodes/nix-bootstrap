@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   Navbar,
   Nav,
@@ -9,6 +9,13 @@ import {
 } from "react-bootstrap";
 
 const Navbar1 = () => {
+  const searchRef = useRef();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    console.log(searchRef.current.value);
+  };
+
   return (
     <>
       <Navbar collapseOnSelect expand='md' bg='clear' variant='dark'>
@@ -18,7 +25,7 @@ const Navbar1 = () => {
           <Nav className='mr-auto'>
             <Nav.Link href='#features'>Features</Nav.Link>
             <Nav.Link href='#pricing'>Pricing</Nav.Link>
-            <NavDropdown title='Dropdown' id='collasible-nav-dropdown'>
+            <NavDropdown title='Dropdown' id='collapsible-nav-dropdown'>
               <NavDropdown.Item href='#action/3.1'>Action</NavDropdown.Item>
               <NavDropdown.Item href='#action/3.2'>
                 Another action
@@ -30,8 +37,13 @@ const Navbar1 = () => {
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Form inline>
-            <FormControl type='text' placeholder='Search' className='mr-sm-2' />
+          <Form inline onSubmit={handleSearch}>
+            <FormControl
+              type='text'
+              placeholder='Search'
+              className='mr-sm-2'
+              ref={searchRef}
+            />
             <Button variant='outline-primary'>Search</Button>
           </Form>
         </Navbar.Collapse>
